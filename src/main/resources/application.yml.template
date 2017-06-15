@@ -1,0 +1,11 @@
+api:
+  baseUrl: https://online.planmill.com/{instance}/api/1.5
+  tokenUrl: https://online.planmill.com/{instance}/api/oauth2/token
+  clientId: PlanMill.client.-17876805898.O4vP
+  clientSecret: bmTuw9QvSKpVqp76D6Xm9FiaxQC
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+  level:
+    root: ERROR
+    com.planmill.api: DEBUG
