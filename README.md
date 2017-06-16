@@ -4,22 +4,23 @@ Tests have methods that could get or modify data through 1.5 API.
 
 ## Basic setup
 
-1. setup env (see below)
-1. checkout and compile project
-1. create new apiuser through web interface
-1. login with that user and create new token (https://online.planmill.com/instance/api/registrations.jsp)
-1. copy application.yml.template -> application.yml, and change corresponding settings
-1. run ConnectionTest.testConnection() test
-1. you should see id of your api user (or error if auth/connection/etc failed)
+1. Install java8, git, ide (e.g. eclipse/idea/etc).
+1. Enable annotation processing in IDE.
+1. Add lombok plugin to IDE.
+1. Checkout locally the project from git.
+1. In IDE import as gradle project and compile.
+1. Login to your Planmill instance and create new user for API.
+1. Login with that user and register the new token (https://github.com/planmill/api/wiki/Security#registration).
+1. In your local project, copy \src\main\resources\application.yml.template -> \src\main\resources\application.yml, and change corresponding settings:
+    * baseUrl,
+    * tokenUrl,
+    * clientId,
+    * clientSecret.
+1. Run ConnectionTest.testConnection() test. In the log you should see id of your api user (or error if auth/connection/etc failed).
 
 
 More info here:
 https://github.com/planmill/api/wiki/Security
 
 
-## Environment setup (for convenience)
-
-1. install java8, git, ide (e.g. eclipse/idea/etc)
-1. enable annotation processing in IDE
-1. add lombok to IDE
 
