@@ -26,29 +26,70 @@ public class Users {
     @Autowired
     private AccountService accountService;
 
+    /**
+     * Create 5 users to planmill
+     */
     @Test
     public void createFiveRandom() {
 
         for (int i = 1; i<=5; i++) {
-            createUser("Bob", "Awesome", i);
+            createUser("Bob", "Awesome", i, null);
         }
     }
 
-    public User createUser(String fName, String lName, int i) {
+    /**
+     * Create user object.
+     *
+     * @param fName
+     * @param lName
+     * @param i
+     * @param email
+     * @return
+     */
+    public User initUser(String fName, String lName, int i, String email) {
+        String suffix = i>0?i+"":"";
         User user = new User();
-        user.setFirstName(fName+i);
+        user.setFirstName(fName+suffix);
         user.setLastName(lName);
+        user.setEmail(email);
         user.setRole(User.ROLE_POWER);
         user.setContractType(User.CONTRACT_TYPE_PARTNER);
         user.setAccount(accountService.getFirst().getId());
-        user.setUserName(fName.toLowerCase().concat(lName.toLowerCase())+i);
+        user.setUserName(fName.toLowerCase().concat(lName.toLowerCase())+suffix);
         user.setPassword(DEFAULT_PASSWORD);
         user.setConfirmPassword(DEFAULT_PASSWORD);
+
+        return user;
+    }
+
+    /**
+     * Create user object to planmill.
+     *
+     * @param fName
+     * @param lName
+     * @param i
+     * @return
+     */
+    public User createUser(String fName, String lName, int i, String email) {
+        User user = initUser(fName,lName,i,email);
 
         user = userService.addUser(user);
 
         log.info("user: {}", user.getId());
 
         return user;
+    }
+
+    /**
+     * Create few users with email and name with dash to planmill
+     */
+    @Test
+    public void createUserWithEmail() {
+        createUser("Data-helper","Support",-1,"data-helper.support@planmill.com");
+
+        createUser("John","the Great",-1,"john.the.great@planmill.eu");
+        createUser("Jack","the Great",-1,"jack.the.great@planmill.eu");
+        createUser("Jim","the Great",-1,"jim.the.great@planmill.eu");
+        createUser("Jax","the Great",-1,"jax.the.great@planmill.eu");
     }
 }

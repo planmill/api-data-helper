@@ -20,6 +20,10 @@ public class ConnectionTest {
     @Autowired
     private UserService userService;
 
+    /**
+     * Used to validate that auth is correct, and user allowed to make requests through api.
+     *
+     */
     @Test
     public void testConnection() {
         User user = userService.getMe();

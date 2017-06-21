@@ -22,6 +22,9 @@ public class TimeReports {
     @Autowired
     private TimeReportService timeReportService;
 
+    /**
+     * Return list of time reports for current api user.
+     */
     @Test
     public void getList() {
         List<TimeReport> list = timeReportService.getList();
