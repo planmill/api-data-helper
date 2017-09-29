@@ -48,7 +48,7 @@ public class Users {
      * @param email
      * @return
      */
-    public User initUser(String fName, String lName, int i, String email) {
+    public User initUser(String fName, String lName, int i, String email, Integer operationalId) {
         String suffix = i>0?i+"":"";
         User user = new User();
         user.setFirstName(fName+suffix);
@@ -60,6 +60,7 @@ public class Users {
         user.setUserName(fName.toLowerCase().concat(lName.toLowerCase())+suffix);
         user.setPassword(DEFAULT_PASSWORD);
         user.setConfirmPassword(DEFAULT_PASSWORD);
+        user.setOperationalId(operationalId);
 
         return user;
     }
@@ -72,14 +73,18 @@ public class Users {
      * @param i
      * @return
      */
-    public User createUser(String fName, String lName, int i, String email) {
-        User user = initUser(fName,lName,i,email);
+    public User createUser(String fName, String lName, int i, String email, Integer operationalId) {
+        User user = initUser(fName,lName,i,email, operationalId);
 
         user = userService.addUser(user);
 
         log.info("user: {}", user.getId());
 
         return user;
+    }
+
+    public User createUser(String fName, String lName, int i, String email) {
+        return createUser(fName,lName,i,email,null);
     }
 
     /**
@@ -106,6 +111,13 @@ public class Users {
         for (User user : users) {
             log.info("user: {}, {}", user.getUserName(), user.getOperationalId());
         }
+
+    }
+
+    @Test
+    public void addUserWithOperationalId() {
+
+        createUser("John2","the Great2",-1,"john.the.great2@planmill.eu",12345);
 
     }
 }
