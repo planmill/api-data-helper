@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 /**
  * Created by konstantin.petrukhnov@planmill.com on 2017-06-15.
  */
@@ -91,5 +93,19 @@ public class Users {
         createUser("Jack","the Great",-1,"jack.the.great@planmill.eu");
         createUser("Jim","the Great",-1,"jim.the.great@planmill.eu");
         createUser("Jax","the Great",-1,"jax.the.great@planmill.eu");
+    }
+
+    /**
+     * Operational id is not enabled for instances by default.
+     */
+    @Test
+    public void logUsersWithOperationalId() {
+
+        List<User> users = userService.getUsers();
+
+        for (User user : users) {
+            log.info("user: {}, {}", user.getUserName(), user.getOperationalId());
+        }
+
     }
 }

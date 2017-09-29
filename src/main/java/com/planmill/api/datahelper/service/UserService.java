@@ -4,9 +4,14 @@ import com.planmill.api.datahelper.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
+import java.util.List;
 
 /**
  * Created by konstantin.petrukhnov@planmill.com on 2017-06-15.
@@ -30,5 +35,19 @@ public class UserService {
     public User getMe() {
         ResponseEntity<User> userResponseEntity = restTemplate.getForEntity(baseUrl+"/me", User.class);
         return userResponseEntity.getBody();
+    }
+
+    public List<User> getUsers() {
+        ResponseEntity<List<User>> userResponseEntity = restTemplate.exchange(baseUrl+URL_SUFFIX, HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {});
+        return userResponseEntity.getBody();
+    }
+
+    /**
+     * Run once to validate access and log.
+     */
+    @PostConstruct
+    public void validateAccess() {
+        User user = getMe();
+        log.debug("connection OK. {} : {}", user.getId(), user.getUserName());
     }
 }

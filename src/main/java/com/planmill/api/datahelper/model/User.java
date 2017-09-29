@@ -21,5 +21,6 @@ public class User {
     private String email;
     private Integer account;
     private Integer contractType;
+    private Integer operationalId;
 
 }
