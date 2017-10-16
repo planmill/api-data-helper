@@ -30,4 +30,10 @@ public class TimeReportService {
         ResponseEntity<List<TimeReport>> responseEntity = restTemplate.exchange(baseUrl+URL_SUFFIX, HttpMethod.GET, null, new ParameterizedTypeReference<List<TimeReport>>() {});
         return responseEntity.getBody();
     }
+
+
+    public TimeReport addTimeReport(TimeReport timeReport) {
+        ResponseEntity<TimeReport> userResponseEntity = restTemplate.postForEntity(baseUrl+URL_SUFFIX, timeReport, TimeReport.class);
+        return userResponseEntity.getBody();
+    }
 }
