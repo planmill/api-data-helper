@@ -1,3 +1,4 @@
+server.port: 9080
 api:
   baseUrl: https://online.planmill.com/{instance}/api/1.5
   tokenUrl: https://online.planmill.com/{instance}/api/oauth2/token
