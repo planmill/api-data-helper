@@ -34,6 +34,16 @@ public class WebHooks {
         log.info("hookId: {}", newHook.getId());
     }
 
+    @Test
+    public void addHookRequestUpdate() {
+        Hook hook = new Hook();
+        hook.setHook(Hook.REQUEST_UPDATE);
+        hook.setUrl("http://localhost:9080/webhooks/request/update");
+
+        Hook newHook = webHookService.addHook(hook);
+        log.info("hookId: {}", newHook.getId());
+    }
+
     /**
      * Request will return 404 if no hooks exist in system.
      */

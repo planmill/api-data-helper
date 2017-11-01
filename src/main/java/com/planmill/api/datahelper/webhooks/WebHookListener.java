@@ -26,4 +26,21 @@ public class WebHookListener {
         return "ok";
     }
 
+
+    /**
+     * Example of returning no content response.
+     *
+     * @param body
+     * @return
+     */
+    @RequestMapping(value = "/request/update", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseBody
+    public Object requestUpdate(@RequestBody String body) {
+
+        log.info("requestUpdate: {}", body);
+
+        return null;
+    }
+
 }

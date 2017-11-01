@@ -10,6 +10,7 @@ public class Hook {
 
     //small subset of available hook types
     public final static String ACCOUNT_UPDATE = "account.update";
+    public final static String ACCOUNT_CREATE = "account.create";
     public final static String REQUEST_ADD = "request.add";
     public final static String REQUEST_UPDATE = "request.update";
     public final static String TIMEREPORT_DELETE = "timereport.delete";
