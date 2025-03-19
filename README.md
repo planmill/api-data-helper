@@ -11,7 +11,7 @@ Tests have methods that could get or modify data through 1.5 API.
 1. In IDE import as gradle project and compile.
 1. Login to your Planmill instance and create new user for API.
 1. Login with that user and register the new token (https://github.com/planmill/api/wiki/Security#registration).
-1. In your local project, copy \src\main\resources\application.yml.template -> \src\main\resources\application.yml, and change corresponding settings:
+1. In your local project, navigate to \src\main\resources\. Copy application.yml.template, create a new named application.yml file in the same directory & update it with the appropriate settings:
     * baseUrl,
     * tokenUrl,
     * clientId,
